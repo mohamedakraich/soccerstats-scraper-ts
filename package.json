@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "scrape": "ts-node index.ts"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
+    "puppeteer": "^10.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "nodemon": "^2.0.14",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  }
+}
