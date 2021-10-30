@@ -49,7 +49,10 @@ export const logResult = (id: string, match: any) => {
 export const logFixture = (id: string, match: any) => {
   const fixtureDate = match.children[0].children[0].children[0].data.trim();
   const firstTeam = match.children[1].children[0].data.trim();
-  const fixtureTime = match.children[2].children[0].children[0].data;
+  const fixtureTime =
+    match.children[2].children[0].data === 'pp.'
+      ? match.children[2].children[0].data
+      : match.children[2].children[0].children[0].data;
   const secondTeam = match.children[3].children[0].data.trim();
 
   console.log(
