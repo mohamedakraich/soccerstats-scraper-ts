@@ -5,6 +5,8 @@
   "dependencies": {
     "axios": "^0.24.0",
     "cheerio": "^1.0.0-rc.10",
+    "cli-progress": "^3.9.1",
+    "exceljs": "^4.3.0",
     "puppeteer": "^10.4.0"
   },
   "devDependencies": {
