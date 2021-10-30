@@ -1,8 +1,14 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
+import cliProgress from 'cli-progress';
+
 import { leagues } from './leagues';
 import { logMatch } from './utils';
+
+const LEAGUES_LENGTH = 98;
+
+const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
 
 const logLeague = async (league: any) => {
   try {
@@ -23,9 +29,14 @@ const logLeague = async (league: any) => {
 };
 
 const logLeagues = async () => {
+  let counter = 0;
+  bar.start(LEAGUES_LENGTH, 0);
   for (let l = 0; l < leagues.length; l++) {
     await logLeague(leagues[l]);
+    counter++;
+    bar.update(counter);
   }
+  bar.stop();
 };
 
 logLeagues();
