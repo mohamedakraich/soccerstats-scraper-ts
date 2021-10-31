@@ -1,49 +1,78 @@
 export const logResult = (id: string, match: any) => {
   const matchDate = match.children[0].children[0].children[0].data.trim();
   const firstTeam = match.children[1].children[0].data.trim();
-  const FT = match.children[2].children[0].children[0].children[0].data;
   const secondTeam = match.children[3].children[0].data.trim();
-  const FHT = match.children[5].children[0].children[0].data.replace(
-    /[{()}]/g,
-    ''
-  );
-  //Fulltime result
-  const HFTG = FT.split(' - ')[0];
-  const AFTG = FT.split(' - ')[1];
+  if (match.children[2].children[0].children[0].data !== 'Aw. L') {
+    const FT = match.children[2].children[0].children[0].children[0].data;
+    const FHT = match.children[5].children[0].children[0].data.replace(
+      /[{()}]/g,
+      ''
+    );
+    //Fulltime result
+    const HFTG = FT.split(' - ')[0];
+    const AFTG = FT.split(' - ')[1];
 
-  //First halftime result
-  const HFHTG = FHT.split('-')[0];
-  const AFHTG = FHT.split('-')[1];
+    //First halftime result
+    const HFHTG = FHT.split('-')[0];
+    const AFHTG = FHT.split('-')[1];
 
-  //Second halftime result
-  const HSHTG = parseInt(HFTG) - parseInt(HFHTG);
-  const ASHTG = parseInt(AFTG) - parseInt(AFHTG);
+    //Second halftime result
+    const HSHTG = parseInt(HFTG) - parseInt(HFHTG);
+    const ASHTG = parseInt(AFTG) - parseInt(AFHTG);
 
-  console.log(
-    id +
-      ' | ' +
-      '2' +
-      ' | ' +
-      matchDate +
-      ' | ' +
-      ' ' +
-      ' | ' +
-      firstTeam +
-      ' | ' +
-      secondTeam +
-      ' | ' +
-      HFTG +
-      ' | ' +
-      AFTG +
-      ' | ' +
-      HFHTG +
-      ' | ' +
-      AFHTG +
-      ' | ' +
-      HSHTG +
-      ' | ' +
-      ASHTG
-  );
+    console.log(
+      id +
+        ' | ' +
+        '2' +
+        ' | ' +
+        matchDate +
+        ' | ' +
+        ' ' +
+        ' | ' +
+        firstTeam +
+        ' | ' +
+        secondTeam +
+        ' | ' +
+        HFTG +
+        ' | ' +
+        AFTG +
+        ' | ' +
+        HFHTG +
+        ' | ' +
+        AFHTG +
+        ' | ' +
+        HSHTG +
+        ' | ' +
+        ASHTG
+    );
+  } else if (match.children[2].children[0].children[0].data === 'Aw. L') {
+    const matchTime = match.children[2].children[0].children[0].data;
+    console.log(
+      id +
+        ' | ' +
+        '2' +
+        ' | ' +
+        matchDate +
+        ' | ' +
+        matchTime +
+        ' | ' +
+        firstTeam +
+        ' | ' +
+        secondTeam +
+        ' | ' +
+        '0' +
+        ' | ' +
+        '0' +
+        ' | ' +
+        '0' +
+        ' | ' +
+        '0' +
+        ' | ' +
+        '0' +
+        ' | ' +
+        '0'
+    );
+  }
 };
 
 export const logFixture = (id: string, match: any) => {
