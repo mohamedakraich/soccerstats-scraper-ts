@@ -1,4 +1,5 @@
-export const logResult = (id: string, match: any) => {
+export const getResult = (id: string, match: any): string[] => {
+  const row: string[] = [];
   const matchDate = match.children[0].children[0].children[0].data.trim();
   const firstTeam = match.children[1].children[0].data.trim();
   const secondTeam = match.children[3].children[0].data.trim();
@@ -20,62 +21,43 @@ export const logResult = (id: string, match: any) => {
     const HSHTG = parseInt(HFTG) - parseInt(HFHTG);
     const ASHTG = parseInt(AFTG) - parseInt(AFHTG);
 
-    console.log(
-      id +
-        ' | ' +
-        '2' +
-        ' | ' +
-        matchDate +
-        ' | ' +
-        ' ' +
-        ' | ' +
-        firstTeam +
-        ' | ' +
-        secondTeam +
-        ' | ' +
-        HFTG +
-        ' | ' +
-        AFTG +
-        ' | ' +
-        HFHTG +
-        ' | ' +
-        AFHTG +
-        ' | ' +
-        HSHTG +
-        ' | ' +
-        ASHTG
-    );
+    return [
+      id,
+      2,
+      matchDate,
+      '',
+      firstTeam,
+      secondTeam,
+      HFTG,
+      AFTG,
+      HFHTG,
+      AFHTG,
+      HSHTG,
+      ASHTG,
+    ];
   } else if (match.children[2].children[0].children[0].data === 'Aw. L') {
     const matchTime = match.children[2].children[0].children[0].data;
-    console.log(
-      id +
-        ' | ' +
-        '2' +
-        ' | ' +
-        matchDate +
-        ' | ' +
-        matchTime +
-        ' | ' +
-        firstTeam +
-        ' | ' +
-        secondTeam +
-        ' | ' +
-        '0' +
-        ' | ' +
-        '0' +
-        ' | ' +
-        '0' +
-        ' | ' +
-        '0' +
-        ' | ' +
-        '0' +
-        ' | ' +
-        '0'
-    );
+
+    console.log('Found One');
+    return [
+      id,
+      2,
+      matchDate,
+      '',
+      firstTeam,
+      secondTeam,
+      '3',
+      '0',
+      '0',
+      '0',
+      '3',
+      '0',
+    ];
   }
+  return [];
 };
 
-export const logFixture = (id: string, match: any) => {
+export const getFixture = (id: string, match: any): string[] => {
   const fixtureDate = match.children[0].children[0].children[0].data.trim();
   const firstTeam = match.children[1].children[0].data.trim();
   const fixtureTime =
@@ -84,25 +66,27 @@ export const logFixture = (id: string, match: any) => {
       : match.children[2].children[0].children[0].data;
   const secondTeam = match.children[3].children[0].data.trim();
 
-  console.log(
-    id +
-      ' | ' +
-      '0' +
-      ' | ' +
-      fixtureDate +
-      ' | ' +
-      fixtureTime +
-      ' | ' +
-      firstTeam +
-      ' | ' +
-      secondTeam
-  );
+  return [
+    id,
+    '0',
+    fixtureDate,
+    fixtureTime,
+    firstTeam,
+    secondTeam,
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+  ];
 };
 
-export const logMatch = (id: string, match: any) => {
+export const getMatch = (id: string, match: any): string[] => {
   if (match.children.length === 9) {
-    logResult(id, match);
+    return getResult(id, match);
   } else if (match.children.length === 7) {
-    logFixture(id, match);
+    return getFixture(id, match);
   }
+  return [];
 };
